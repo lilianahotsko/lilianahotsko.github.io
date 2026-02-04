@@ -12,64 +12,224 @@
   <link rel="icon" href="favicon.ico" />
   <style>
     :root{
---bg: #f8f9fb;
+--bg: #ffffff;
 --panel: #ffffff;
---text: #1d1f23;
---muted: #5c6573;
---link: #3366cc;
---brand: #8855ff; /* accent */
---card: #fafbff;
---border: #d0d4dc;
---radius: 16px;
---shadow: 0 4px 12px rgba(0,0,0,.08);
+--text: #2c3e50;
+--muted: #6c757d;
+--link: #1a5490;
+--link-hover: #0d3d6e;
+--accent: #1a5490;
+--border: #dee2e6;
+--section-border: #e9ecef;
 }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font:16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      /* background:linear-gradient(180deg, var(--bg), #0e1117 60%); */
+      margin:0; 
+      font:17px/1.7 "Georgia", "Times New Roman", serif;
       color:var(--text);
+      background:var(--bg);
     }
-    .wrap{max-width:920px; margin:0 auto; padding:32px 20px 80px}
-    header{display:flex; gap:18px; align-items:center; margin-top:24px; margin-bottom:12px}
-    .avatar{width:150px; height:150px; border-radius:50%; object-fit:cover; border:1px solid var(--border); box-shadow:var(--shadow)}
-    h1{font-size:28px; margin:0}
-    .tagline{color:var(--muted); margin:4px 0 0}
-    nav{margin-top:10px}
-    nav a{margin-right:14px; color:var(--link); text-decoration:none}
-    nav a:hover{text-decoration:underline}
+    .wrap{max-width:900px; margin:0 auto; padding:48px 24px 80px}
+    
+    header{
+      display:flex; 
+      gap:32px; 
+      align-items:flex-start; 
+      margin-bottom:48px;
+      padding-bottom:32px;
+      border-bottom:2px solid var(--section-border);
+    }
+    .avatar{
+      width:140px; 
+      height:140px; 
+      border-radius:4px; 
+      object-fit:cover; 
+      border:1px solid var(--border);
+    }
+    h1{
+      font-size:32px; 
+      margin:0 0 8px;
+      font-weight:600;
+      font-family:"Times New Roman", "Georgia", serif;
+      color:#1a1a1a;
+      letter-spacing:-0.5px;
+    }
+    .tagline{
+      color:var(--muted); 
+      margin:8px 0 12px;
+      font-size:16px;
+      font-style:italic;
+    }
+    nav{
+      margin-top:16px;
+      font-size:15px;
+    }
+    nav a{
+      margin-right:20px; 
+      color:var(--link); 
+      text-decoration:none;
+      font-family:"Georgia", serif;
+    }
+    nav a:hover{
+      text-decoration:underline;
+      color:var(--link-hover);
+    }
 
     /* sections */
-    section{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-top:18px; box-shadow:var(--shadow)}
-    section h2{margin:0 0 8px; font-size:20px}
-    p{margin:8px 0}
-    .muted{color:var(--muted)}
+    section{
+      background:var(--panel); 
+      border-bottom:1px solid var(--section-border);
+      padding:32px 0;
+      margin-top:0;
+    }
+    section:first-of-type{
+      padding-top:0;
+    }
+    section h2{
+      margin:0 0 20px; 
+      font-size:24px;
+      font-weight:600;
+      font-family:"Times New Roman", "Georgia", serif;
+      color:#1a1a1a;
+      border-bottom:1px solid var(--section-border);
+      padding-bottom:8px;
+    }
+    p{
+      margin:12px 0;
+      text-align:justify;
+    }
+    .muted{
+      color:var(--muted);
+      font-size:15px;
+    }
+    
+    /* links */
+    a{
+      color:var(--link); 
+      text-decoration:none;
+    }
+    a:hover{
+      text-decoration:underline;
+      color:var(--link-hover);
+    }
 
     /* projects grid */
-    .projects{display:grid; grid-template-columns:1fr; gap:14px}
-    @media (min-width:720px){ .projects{grid-template-columns:1fr 1fr} }
+    .projects{
+      display:grid; 
+      grid-template-columns:1fr; 
+      gap:32px;
+    }
+    @media (min-width:720px){ 
+      .projects{
+        grid-template-columns:1fr; 
+      } 
+    }
 
     .project{
-      display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border);
-      border-radius:var(--radius); overflow:hidden; transition:transform .12s ease, border-color .12s ease;
+      display:flex; 
+      flex-direction:row;
+      gap:24px;
+      padding-bottom:32px;
+      border-bottom:1px solid var(--section-border);
     }
-    .project:hover{transform:translateY(-2px); border-color:#34384a}
-    .project figure{margin:0; background:#0f121a; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center}
-    .project img, .project video{width:100%; height:100%; object-fit:cover}
-    .project .content{padding:14px}
-    .project h3{margin:0 0 6px; font-size:18px}
-    .chip{display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; background:#212436; color:#c8cff7; border:1px solid var(--border); margin-right:6px}
-    .links{margin-top:8px}
-    .links a{color:var(--link); text-decoration:none; margin-right:10px}
-    .links a:hover{text-decoration:underline}
+    .project:last-child{
+      border-bottom:none;
+      padding-bottom:0;
+    }
+    .project figure{
+      margin:0; 
+      background:#f8f9fa;
+      width:240px;
+      min-width:240px;
+      height:135px;
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      border:1px solid var(--border);
+    }
+    .project img, .project video{
+      width:100%; 
+      height:100%; 
+      object-fit:cover;
+    }
+    .project .content{
+      flex:1;
+    }
+    .project h3{
+      margin:0 0 10px; 
+      font-size:20px;
+      font-weight:600;
+      font-family:"Times New Roman", "Georgia", serif;
+      color:#1a1a1a;
+    }
+    .chips{
+      margin:8px 0 12px;
+    }
+    .chip{
+      display:inline-block; 
+      font-size:12px; 
+      padding:3px 10px; 
+      border-radius:2px; 
+      background:#f8f9fa; 
+      color:var(--text); 
+      border:1px solid var(--border); 
+      margin-right:6px;
+      margin-bottom:4px;
+      font-family:"Georgia", serif;
+      font-weight:normal;
+    }
+    .links{
+      margin-top:12px;
+      font-size:15px;
+    }
+    .links a{
+      color:var(--link); 
+      text-decoration:none; 
+      margin-right:16px;
+    }
+    .links a:hover{
+      text-decoration:underline;
+      color:var(--link-hover);
+    }
 
     /* about list */
-    ul.inline{padding-left:18px; margin:8px 0}
+    ul.inline{
+      padding-left:24px; 
+      margin:12px 0;
+    }
+    ul.inline li{
+      margin:6px 0;
+    }
 
-    footer{margin-top:26px; text-align:center; color:var(--muted)}
+    footer{
+      margin-top:48px; 
+      text-align:center; 
+      color:var(--muted);
+      font-size:14px;
+      padding-top:24px;
+      border-top:1px solid var(--section-border);
+    }
 
-    /* nice focus */
-    a:focus-visible, button:focus-visible{outline:2px solid var(--brand); outline-offset:2px; border-radius:8px}
+    /* focus */
+    a:focus-visible, button:focus-visible{
+      outline:2px solid var(--accent); 
+      outline-offset:2px;
+    }
+    
+    @media (max-width:640px){
+      header{
+        flex-direction:column;
+        gap:20px;
+      }
+      .project{
+        flex-direction:column;
+      }
+      .project figure{
+        width:100%;
+        height:180px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -83,7 +243,7 @@
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
-          <a href="CVLilianaHotsko-10-12.pdf">CV</a>
+          <a href="CVWaterlooLilianaHotsko.pdf">CV</a>
         </nav>
       </div>
     </header>
@@ -103,9 +263,27 @@
     </section>
 
     <section id="projects" aria-labelledby="projects-h">
-      <h2 id="projects-h">Seleсted Works</h2>
+      <h2 id="projects-h">Selected Works</h2>
       <div class="projects">
-        <!-- 1. LLM Anonymization Framework -->
+        <!-- 1. Program As Weights -->
+        <article class="project">
+          <figure>
+            <img src="assets/paw.png" alt="Program As Weights" />
+          </figure>
+          <div class="content">
+            <h3>Program As Weights</h3>
+            <div class="chips">
+              <span class="chip">LLM</span>
+              <span class="chip">Neural Networks</span>
+            </div>
+            <p>Research on representing programs as neural network weights, exploring novel approaches to program synthesis and neural architecture design.</p>
+            <div class="links">
+              <a href="./PAW.pdf">Paper in Submission</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. LLM Anonymization Framework -->
         <article class="project">
           <figure>
             <!-- Use a GIF or image demo (place at assets/llm-anon.gif) -->
@@ -126,7 +304,7 @@
           </div>
         </article>
 
-        <!-- 2. Hyper/LoRA vs Full‑FT on RepoBench -->
+        <!-- 3. Hyper/LoRA vs Full‑FT on RepoBench -->
         <article class="project">
           <figure>
             <img src="assets/hypernetwork.png" alt="Training curves comparing full finetune vs LoRA vs HyperLoRA" />
@@ -145,7 +323,7 @@
           </div>
         </article>
 
-        <!-- 3. MacTell: Open Interpreter for macOS -->
+        <!-- 4. MacTell: Open Interpreter for macOS -->
         <article class="project">
           <figure>
             <img src="assets/Mactell.png" alt="MacTell app screenshot" />
@@ -164,7 +342,7 @@
           </div>
         </article>
 
-        <!-- 4. MGNNs Benchmarking -->
+        <!-- 5. MGNNs Benchmarking -->
         <article class="project">
           <figure>
             <img src="assets/GNN.png" alt="Graphs and rules extraction visualization" />
@@ -183,7 +361,7 @@
           </div>
         </article>
 
-        <!-- 5. Delta/Terminal (Data Engineering)
+        <!-- 6. Delta/Terminal (Data Engineering)
         <article class="project">
           <figure>
             <img src="assets/delta-terminal.png" alt="ETL dashboard screenshot" />
