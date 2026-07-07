@@ -191,6 +191,18 @@
     .pill.new{background:var(--accent-soft); color:var(--accent-ink); border-color:color-mix(in srgb,var(--accent) 25%,transparent)}
     html[data-theme="dark"] .pill.hf{background:#3a2a10; color:#ffb74d; border-color:#5a4218}
     .news .what a.inline{font-weight:500}
+    .news-rest{overflow:hidden; max-height:0; transition:max-height .55s cubic-bezier(.22,.7,.2,1), opacity .4s ease; opacity:.4}
+    .news-rest.open{opacity:1}
+    .news-more-wrap{position:relative; margin-top:6px; padding-left:30px}
+    .news-toggle{
+      display:inline-flex; align-items:center; gap:8px; font-family:"Inter",sans-serif; font-weight:600; font-size:14px;
+      color:var(--accent-ink); background:var(--accent-soft); border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+      padding:9px 16px; border-radius:999px; cursor:pointer; transition:.2s;
+    }
+    .news-toggle:hover{background:var(--bg-soft); border-color:var(--accent)}
+    .news-toggle .chev{transition:transform .35s ease; display:grid; place-items:center}
+    .news-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+    .news-toggle .chev svg{width:16px;height:16px}
 
     /* ---------- projects ---------- */
     .projects{display:flex; flex-direction:column; gap:28px}
@@ -428,6 +440,7 @@
           </div>
         </div>
 
+        <div class="news-rest" id="newsRest">
         <div class="news">
           <div class="when">Jul 2026</div>
           <div class="what">
@@ -491,7 +504,14 @@
             <div class="sub">In collaboration with the University of Oxford.</div>
           </div>
         </div>
+        </div><!-- /news-rest -->
 
+      </div>
+      <div class="news-more-wrap">
+        <button class="news-toggle" id="newsToggle" aria-expanded="false" aria-controls="newsRest">
+          <span id="newsToggleLabel">Show all news</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
       </div>
     </section>
 
@@ -751,6 +771,25 @@
     const navlinks = document.getElementById('navlinks');
     document.getElementById('menuToggle').addEventListener('click', () => navlinks.classList.toggle('open'));
     navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+    // news dropdown
+    const newsRest = document.getElementById('newsRest');
+    const newsToggle = document.getElementById('newsToggle');
+    const newsLabel = document.getElementById('newsToggleLabel');
+    if (newsRest && newsToggle){
+      const collapse = () => { newsRest.style.maxHeight = newsRest.scrollHeight + 'px'; requestAnimationFrame(() => { newsRest.style.maxHeight = '0px'; }); };
+      newsToggle.addEventListener('click', () => {
+        const open = newsRest.classList.toggle('open');
+        newsToggle.setAttribute('aria-expanded', open);
+        newsLabel.textContent = open ? 'Show less' : 'Show all news';
+        if (open){
+          newsRest.style.maxHeight = newsRest.scrollHeight + 'px';
+          newsRest.addEventListener('transitionend', function te(e){ if (e.propertyName === 'max-height' && newsRest.classList.contains('open')){ newsRest.style.maxHeight = 'none'; newsRest.removeEventListener('transitionend', te); } });
+        } else {
+          collapse();
+        }
+      });
+    }
 
     // reveal on scroll
     const io = new IntersectionObserver((entries) => {
